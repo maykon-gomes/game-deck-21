@@ -1,0 +1,99 @@
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 9px;
+  grid-row-gap: 0px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #112233;
+  font-family: Arial, sans-serif;
+}
+
+.left-panel { 
+  grid-area: 1 / 1 / 3 / 3;
+  background-color: #445566;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  flex-direction: column; 
+}
+
+.right-panel { 
+  grid-area: 1 / 3 / 3 / 4;
+  display: flex;
+  flex-direction: column; 
+  
+}
+
+.top-panel { 
+  grid-area: 1 / 3 / 2 / 4;
+  background-color: #778899;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #fff;
+  margin-bottom: 3px;
+}
+
+.bottom-panel { 
+  grid-area: 2 / 3 / 3 / 4;
+  background-color: #778899;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  
+}
+
+.l-bottom-panel, .l-top-panel {
+  display: flex;
+  margin: 3px;
+  background-color: #445566;
+  border-color: #445566;
+  flex-wrap: wrap;
+  border: 2px;
+  border-color:#778899;
+}
+
+/* Estilo dos elementos dentro das divs */
+.left-panel, .right-panel, .top-panel, .bottom-panel, #pontuation-computer, #pontuation-user {
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+
+}
+
+#pontuation-computer, #pontuation-user {
+  margin: 10px;
+  border: 2px;
+}
+
+/* Estilo dos elementos de cartas */
+.card {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+  width: 100px;
+  height: 150px;
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card .suit {
+  font-size: 3em;
+  text-align: center;
+}
+
+.card .rank {
+  font-size: 2em;
+  text-align: center;
+}

@@ -115,5 +115,4 @@ class Blackjack:
                         print(f'Player {i} Ties!')
 
 bj = Blackjack()
-bj.deal_cards()
-bj.user_actions()
+bj.play_game()

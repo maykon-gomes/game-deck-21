@@ -2,7 +2,8 @@
 import random
 
 class Blackjackkk:
-    def __init__(self):
+    def __init__(self, num_players=1):
+        self.num_players = num_players
         self.players = self.create_players()
         self.deck = self.create_deck()
 
@@ -16,7 +17,7 @@ class Blackjackkk:
 
     def create_players(self):
         players = []
-        for i in range(2):
+        for i in range(self.num_players):
             i = str(i+1)
             players.append({'nick':'player'+i,'hand': [], 'score': 0, 'coins': 500})
         return players
@@ -33,26 +34,44 @@ class Blackjackkk:
         hand = [self.players[i] for i in range(len(self.players))]
         print(hand)
 
+    # pontos do Ace são variaveis 1 ou 11
+    def check_ace(self):
+        if len(self.aces) > 0:
+                for play in self.aces:
+                    indice = self.aces[len(play)-1] #aces[0]
+                    i = int(indice['Ace'][-1:]) - 1 #0
+                    ace = self.player_points[i]
+                    if ace + 10 <= 21:
+                        ace += 10
+                        self.player_points[i] = ace
+                        
+
     def point(self):
-        player_points = []
+        self.player_points = []
+        self.aces = []
         for player in range(len(self.players)):
-            hand_score = 0
-            for card in range(len(self.players[player]['hand'])):
-                value = self.players[player]['hand'][card]['value']
-                if type(value) == str:
-                    value = 10
-                else:
-                    pass                           
-                hand_score += value
-                 
+            if True:
+                hand_score = 0
+                for card in range(len(self.players[player]['hand'])):
+                    value = self.players[player]['hand'][card]['value']
+                    if type(value) == str and value != 'Ace':
+                        value = 10
+                    elif value == 'Ace':
+                        value = 1
+                        self.aces.append({'Ace': self.players[player]['nick']})
 
-            player_points.append(hand_score)
-        print(player_points)
+                    hand_score += value
+                     
+                self.player_points.append(hand_score)
 
+        self.check_ace()
+        print(self.player_points)
+        print(self.aces)
+        
         #total = [self.players[player]['hand'][0]['value'] for player in range(len(self.players)) ]
         #print (total)
 
-bj = Blackjackkk()
+bj = Blackjackkk(4)
 bj.create_deck()
 bj.create_players()
 bj.deal_cards()

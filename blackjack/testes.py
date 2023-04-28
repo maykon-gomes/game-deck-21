@@ -47,7 +47,7 @@ class Blackjackkk:
                         
 
     def point(self):
-        self.player_points = []
+        self.player_points = [] #lista de pontos
         self.aces = []
         for player in range(len(self.players)):
             if True:
@@ -71,9 +71,27 @@ class Blackjackkk:
         #total = [self.players[player]['hand'][0]['value'] for player in range(len(self.players)) ]
         #print (total)
 
+    def user_action(self):
+        for player in self.players:
+            action = int(input("1 - HINT \n2 - STAND\n"))
+            if action == 1:
+                self.players[player]['hand'].append(self.deck[0]) ###no dict
+                self.remove_first_card()
+                print(f'\nYour new card is :{self.players[player]["hand"][-1]}')
+                if self.point(self.players[player]["hand"]) > 21: ####ERROR retornando dicionário
+                    print(f'\nYour cards {player["hand"]}, sum: {self.hand_points(player["hand"])}')
+                    print('\n\n############ Dealer Hand ############\n')
+                    print(f"Dealer's hand: {self.players[0]['hand']}\n")
+                    print('You Busted! Better luck next time')
+                    return 'BUSTED'
+            elif action == '2':
+                return 'STAND'
+
+
 bj = Blackjackkk(4)
 bj.create_deck()
 bj.create_players()
 bj.deal_cards()
+bj.user_action()
 bj.point()
 
